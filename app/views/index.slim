@@ -1,0 +1,32 @@
+doctype html
+html
+  head
+    link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
+    link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"
+    script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"
+  body
+    -if @message
+        = @message
+    form action="/" method="POST"
+      label for="id_url" class="form-group"
+        | Url
+        input id="id_url" type="text" class="form-control" name="url"
+      input.button type="submit" value="Go!" class="btn btn-default"
+
+    table class="table"
+      thead
+        tr
+          th Site url
+          th Created at
+          th Actions
+      tbody
+        - @file_names.each do |file|
+          - if file
+            tr
+              td
+                =file[0..-21]
+              td
+                =file[-19..-1]
+              td
+                a href="/pages/#{file}"
+                  = 'View'
